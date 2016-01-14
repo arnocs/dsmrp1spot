@@ -1,0 +1,26 @@
+<?PHP
+// Include config file
+// *** INPUT FILE       * $p1latestfile
+// *** DATABASE         * $dbserver $dbusername $dbpassword $dbname
+// *** PvOutput.org     * $pvoapi $pvosid
+// include '/usr/local/bin/dsrmp1spot/p1spot.conf';
+
+// ***
+error_reporting(E_ERROR | E_WARNING | E_PARSE);
+
+// *** INPUT FILE
+$p1latestfile = "/usr/local/bin/dsrmp1spot/data/latest.txt";
+$p1length = "36";
+
+// *** DATABASE
+$dbserver	= "localhost";
+$dbname		= "P1spot";
+$dbusername	= "p1spotUser";
+$dbpassword	= "p1spotPassword";
+
+// *** PVOutput.org
+$pvourladd      = "http://pvoutput.org/service/r2/addstatus.jsp";
+$pvoapi		= "1234567890123456789012345678901234567890";
+$pvosid		= "000000";
+
+?>
