@@ -26,6 +26,6 @@ $dbpassword	= "p1spotPassword";
 // *** PVOutput.org
 $pvourladd      = "http://pvoutput.org/service/r2/addstatus.jsp";
 $pvoapi		= "1234567890123456789012345678901234567890";
-$pvosid		= "000000";
+$pvosid		= "00000";
 
 ?>

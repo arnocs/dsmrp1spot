@@ -1,11 +1,11 @@
-# dsmrp1spot
+# DSMR P1spot
 A first github project, </BR>
-Readout data from a DSMR smart meter P1 port via serial and store it in mysql database.
+Readout data from a DSMR smart meter P1 port via serial and store it in mysql database.</BR>
 Using python/php/mysql.</BR>
 
 # Note:
-The P1 port telegram data is based uppon DSMR Verion 4.2.
-All other versions are not compatible with this script.
+The P1 port telegram data is based uppon DSMR Verion 4.2.</BR>
+All other versions are not compatible with this script.</BR>
 
 # Crontab -e
 // dsmrp1spot, read data from P1 port KWh meter</BR>
