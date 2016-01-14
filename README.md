@@ -1,5 +1,7 @@
 # dsmrp1spot
-A first personal github project, readout data from a smart meter via serial P1 port and store it in mysql. Using python/php/mysql.
+A first github project, </BR>
+Readout data from a smart meter via serial P1 port and store it in mysql. </BR>
+Using python/php/mysql.</BR>
 
 
 # Crontab -e
@@ -14,3 +16,4 @@ ln -s /usr/local/bin/dsmrp1spot/www/p2 /var/www/p2</BR>
 ln -s /usr/local/bin/dsmrp1spot/www/p1daily /var/www/p1daily</BR>
 ln -s /usr/local/bin/dsmrp1spot/www/p3 /var/www/p3</BR>
 ln -s /usr/local/bin/dsmrp1spot/www/p1hourly /var/www/p1hourly</BR>
+ln -s /usr/local/bin/dsmrp1spot/www/logs /var/www/logs</BR>

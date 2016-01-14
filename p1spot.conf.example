@@ -1,15 +1,20 @@
 <?PHP
+
 // Include config file
-// *** INPUT FILE       * $p1latestfile
+// *** P1 path file     * $p1path $p1latestfile
 // *** DATABASE         * $dbserver $dbusername $dbpassword $dbname
 // *** PvOutput.org     * $pvoapi $pvosid
-// include '/usr/local/bin/dsrmp1spot/p1spot.conf';
+// include '/usr/local/bin/dsmrp1spot/p1spot.conf';
 
 // ***
 error_reporting(E_ERROR | E_WARNING | E_PARSE);
 
+// ***
+$p1path="/usr/local/bin/dsmrp1spot";
+$sbfpath="/home/pi/smadata/logs";
+
 // *** INPUT FILE
-$p1latestfile = "/usr/local/bin/dsrmp1spot/data/latest.txt";
+$p1latestfile = $p1path."/data/latest.txt";
 $p1length = "36";
 
 // *** DATABASE
