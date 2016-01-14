@@ -1,6 +1,6 @@
 # dsmrp1spot
 A first github project, </BR>
-Readout data from a smart meter via serial P1 port and store it in mysql. </BR>
+Readout data from a DSMR smart meter P1 port via serial and store it in mysql database.
 Using python/php/mysql.</BR>
 
 
