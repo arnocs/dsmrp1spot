@@ -12,7 +12,7 @@ CREATE Table Config (
 	PRIMARY KEY (`Key`)
 );
 
-INSERT INTO Config VALUES('SchemaVersion','1');
+INSERT INTO Config VALUES('SchemaVersion','2');
 
 ### Table 
 
@@ -72,5 +72,15 @@ CREATE TABLE `P1device` (
 	`Tail` VARCHAR(8) NULL DEFAULT NULL,
 	`Status` VARCHAR(10) NULL DEFAULT NULL,
 	`Temperature` FLOAT NULL DEFAULT NULL,
+	`EnergyimportDelta` INT(10) NULL DEFAULT '0',
+	`EnergyimportPeakOffDelta` INT(10) UNSIGNED NULL DEFAULT '0',
+	`EnergyimportPeakDelta` INT(10) UNSIGNED NULL DEFAULT '0',
+	`EnergyexportDelta` INT(10) NULL DEFAULT '0',
+	`EnergyexportPeakOffDelta` INT(10) UNSIGNED NULL DEFAULT '0',
+	`EnergyexportPeakDelta` INT(10) UNSIGNED NULL DEFAULT '0',
+	`EnergyimportDaily` INT(10) UNSIGNED NULL DEFAULT '0'
+	`EnergyexportDaily` INT(10) UNSIGNED NULL DEFAULT '0'
 	PRIMARY KEY (`TimeStamp`)
 );
+
+
