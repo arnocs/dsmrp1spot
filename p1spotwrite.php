@@ -1,4 +1,6 @@
 <?PHP
+// Rev 2
+
 // Get data from file and write
 // converts raw p1-port telegram to CSV format and extract data to variables
 
@@ -6,6 +8,7 @@
 // *** P1 path file     * $p1path $p1latestfile
 // *** DATABASE         * $dbserver $dbusername $dbpassword $dbname
 // *** PvOutput.org     * $pvoapi $pvosid
+
 include '/usr/local/bin/dsmrp1spot/p1spot.conf';
 
 // ### Get data from p1-telegram file and convert it to CSV
@@ -149,11 +152,6 @@ if ($result->num_rows > 0) {
 	echo "0 results"; 
 } 
 
-/*	echo "[read] ".$lastp1timestampunix."\t".$p1timestamp."\r\n";
-	echo "IMP ".$lastp1energyimport."\t PeakOff ".$lastp1energyimportpeakoff."\t Peak ".$lastp1energyimportpeak."\r\n";
-	echo "EXP ".$lastp1eneryexport."\t PeakOff ".$lastp1energyexportpeakoff."\t Peak ".$lastp1energyexportpeak."\r\n";
-	echo intval($p1energyimport)."\t".intval($lastp1energyimport)."\r\n";
-*/		
 	$EnergyimportDelta = intval($p1energyimport) - intval($lastp1energyimport);
 	$EnergyimportPeakOffDelta = intval($p1energyimportpeakoff) - intval($lastp1energyimportpeakoff);
 	$EnergyimportPeakDelta = intval($p1energyimportpeak) - intval($lastp1energyimportpeak);
@@ -164,16 +162,11 @@ if ($result->num_rows > 0) {
 
 	$EnergyimportDaily = $lastEnergyimportDaily + $EnergyimportDelta ;
 	$EnergyexportDaily = $lastEnergyexportDaily + $EnergyexportDelta ;
-	
+
+	// Required for pvoutput, consumption is cummulative daily
 	if ($p1time=="00:00") { $EnergyimportDaily = 0;}
 	if ($p1time=="00:00") { $EnergyexportDaily = 0;}
 
-//	$currenttime = date('H:i', $p1timestampunix)
-
-/*	
-	echo $EnergyimportDelta ."\t". $EnergyimportPeakOffDelta ."\t". $EnergyimportPeakDelta . "\r\n"; 
-	echo $EnergyexportDelta ."\t". $EnergyexportPeakOffDelta ."\t". $EnergyexportPeakDelta . "\r\n";
-*/
 		
 // INSERT *** Query
 // ***
@@ -219,25 +212,9 @@ $conn->close();
 
 // **********************************************************
 // *** Post data directly to PVoutput.org via CURL
+// Old post data
 //exec ('curl -s -d "d='.date('Ymd', $p1timestampunix).'" -d "t='.date('H:i', $p1timestampunix).'" -d "v4='.$p1pimport.'" -H "X-Pvoutput-Apikey: '.$pvoapi.'" -H "X-Pvoutput-SystemId: '.$pvosid.'" '.$pvourladd.'');
 
 exec ('curl -s -d "d='.date('Ymd', $p1timestampunix).'" -d "t='.date('H:i', $p1timestampunix).'" -d "v3='.$EnergyimportDaily.'" -H "X-Pvoutput-Apikey: '.$pvoapi.'" -H "X-Pvoutput-SystemId: '.$pvosid.'" '.$pvourladd.'');
 
-//exec ('curl -s -d "d='.date('Ymd', $p1timestampunix).'" -d "t='.date('H:i', $p1timestampunix).'" -d "v3='.$EnergyimportDelta.'"  -H "X-Pvoutput-Apikey: '.$pvoapi.'" -H "X-Pvoutput-SystemId: '.$pvosid.'" '.$pvourladd.'');
-
-// exec ('curl -s -d "d='.date('Ymd', $p1timestampunix).' " -d "t='.date('H:i', $p1timestampunix).'" -d "v3='.$p1enesryimport.'" -H "X-Pvoutput-Apikey: '.$pvoapi.'" -H "X-Pvoutput-SystemId: '.$pvosid.'" '.$pvourladd.'');
-//exec ('curl -s -d "d='.date('Ymd', $p1timestampunix).' " -d "t='.date('H:i', $p1timestampunix).'" -d "v3='.$EnergyimportDelta.'" -d "ip='.$EnergyimportPeakDelta.'" -d "io='.$EnergyimportPeakOffDelta.'" -H "X-Pvoutput-Apikey: '.$pvoapi.'" -H "X-Pvoutput-SystemId: '.$pvosid.'" '.$pvourladd.'');
-//exec ('curl -s -d "d='.date('Ymd', $p1timestampunix).' " -d "t='.date('H:i', $p1timestampunix).'" -d "v4='.$p1pimport.'" -d "ip='.EnergyimportPeakDelta.'" -d "io='.$EnergyimportPeakOffDelta.'" -H "X-Pvoutput-Apikey: '.$pvoapi.'" -H "X-Pvoutput-SystemId: '.$pvosid.'" '.$pvourladd.'');
-// exec ('curl -s -d "d='.date('Ymd', $p1timestampunix).' " -d "t='.date('H:i', $p1timestampunix).'" -d "v3='.$EnergyimportDelta.'" -H "X-Pvoutput-Apikey: '.$pvoapi.'" -H "X-Pvoutput-SystemId: '.$pvosid.'" '.$pvourladd.'');
-
-// -d "v3='.$EnergyimportDelta.'" -d "ip='.EnergyimportPeakDelta.'" -d "io='.$EnergyimportPeakOffDelta.'"  
-
-/*
-echo "\n\r";
-echo $EnergyimportDelta . "\t" . $p1energyimport ."\n\r";
-
-
-echo 'curl -s -d "d='.date('Ymd', $p1timestampunix).' " -d "t='.date('H:i', $p1timestampunix).'" -d "c1=1" -d "v3='.$p1energyimport.'"  -H "X-Pvoutput-Apikey: '.$pvoapi.'" -H "X-Pvoutput-SystemId: '.$pvosid.'" '.$pvourladd.'';
-echo "\n\r";
-*/
 ?>
