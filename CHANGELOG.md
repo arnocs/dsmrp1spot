@@ -1,4 +1,4 @@
-Changelog
+## Changelog
 
 # 20160909,
 Added: New fields to the database, differences of energy import/export. See below 'schemaupdate 2'
