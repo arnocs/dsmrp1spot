@@ -1,10 +1,11 @@
-### DSMR P1 uitlezen
+### DSMR P1 read from port via serial
 versie = "0.2"
 import sys
 import serial
 
 ### Set COM port config
 ser = serial.Serial()
+
 ser.baudrate = 115200
 ser.bytesize=serial.SEVENBITS
 ser.parity=serial.PARITY_NONE
@@ -12,6 +13,7 @@ ser.stopbits=serial.STOPBITS_ONE
 ser.xonxoff=0
 ser.rtscts=0
 ser.timeout=20
+
 ser.port="/dev/ttyUSB0"
 
 ### p1_count counter for p1.datagram length in case of error read
@@ -19,7 +21,7 @@ p1_count=0
 p1_line=''
 
 ##############################################################################
-#Main program
+# Main program
 ##############################################################################
 
 ### Open COM port
@@ -46,4 +48,3 @@ try:
     ser.close()
 except:
     sys.exit ("Oops %s. program aborted. Could not clode serial port." % ser.name )
-
