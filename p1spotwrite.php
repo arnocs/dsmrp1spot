@@ -164,8 +164,8 @@ if ($result->num_rows > 0) {
 	$EnergyexportDaily = $lastEnergyexportDaily + $EnergyexportDelta ;
 
 	// Required for pvoutput, consumption is cummulative daily
-	if ($p1time=="00:00") { $EnergyimportDaily = 0;}
-	if ($p1time=="00:00") { $EnergyexportDaily = 0;}
+	if ($p1time=="00:00") { $EnergyimportDaily = $lastEnergyimportDaily;}
+	if ($p1time=="00:00") { $EnergyexportDaily = $lastEnergyexportDaily;}
 
 		
 // INSERT *** Query

@@ -11,7 +11,7 @@ PVoutput requires a daily cummulative value to be posted in v3.
 note: Cummulative Energyimport values are needed for field v3.<br>
 note: Found typo's in Enery, fixed.
 
-### IF Schemaversion is 1
+### IF Schemaversion is 1 (Takes a while to process these commands)
 ALTER TABLE P1device ADD EnergyimportPeakOffDelta INT(10) NULL DEFAULT '0';<br>
 ALTER TABLE P1device ADD EnergyimportPeakDelta INT(10) NULL DEFAULT '0';<br>
 ALTER TABLE P1device ADD EnergyexportDelta INT(10) NULL DEFAULT '0';<br>
