@@ -167,6 +167,9 @@ if ($result->num_rows > 0) {
 	if ($p1time=="00:00") { $EnergyimportDaily = $lastEnergyimportDaily;}
 	if ($p1time=="00:00") { $EnergyexportDaily = $lastEnergyexportDaily;}
 
+	if ($p1time=="00:01") { $EnergyimportDaily = $lastEnergyimportDaily;}
+	if ($p1time=="00:01") { $EnergyexportDaily = $lastEnergyexportDaily;}
+
 		
 // INSERT *** Query
 // ***
