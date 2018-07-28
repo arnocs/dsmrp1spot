@@ -8,10 +8,10 @@
 // *** P1 path file     * $p1path $p1latestfile
 // *** DATABASE         * $dbserver $dbusername $dbpassword $dbname
 // *** PvOutput.org     * $pvoapi $pvosid
-
 include '/usr/local/bin/dsmrp1spot/p1spot.conf';
 
 // ### Get data from p1-telegram file and convert it to CSV
+//
 $handle = fopen($p1latestfile, "r");
 	if ($handle) {
 		$count=0;
@@ -34,6 +34,7 @@ fclose($handle);
 }
 
 // ### Parse variables from p1 telegram ###
+//
 $p1parsedstamp = date_parse_from_format("ymdHis", substr(trim($output[4][2]), 0, -1));
 $p1timestamp = mktime( $p1parsedstamp['hour'],$p1parsedstamp['minute'],$p1parsedstamp['second'],$p1parsedstamp['month'],$p1parsedstamp['day'],$p1parsedstamp['year']);
 $p1timestamp = date('Y-m-d H:i:s', $p1timestamp);			// ### TimpStamp MySQL
@@ -164,15 +165,15 @@ if ($result->num_rows > 0) {
 	$EnergyexportDaily = $lastEnergyexportDaily + $EnergyexportDelta ;
 
 	// Required for pvoutput, consumption is cummulative daily
-	if ($p1time=="00:00") { $EnergyimportDaily = $lastEnergyimportDaily;}
-	if ($p1time=="00:00") { $EnergyexportDaily = $lastEnergyexportDaily;}
-
-	if ($p1time=="00:01") { $EnergyimportDaily = $lastEnergyimportDaily;}
-	if ($p1time=="00:01") { $EnergyexportDaily = $lastEnergyexportDaily;}
+	if ($p1time=="00:00") { $EnergyimportDaily = $EnergyimportDelta; }
+	if ($p1time=="00:00") { $EnergyexportDaily = $EnergyexportDelta; }
+	if ($p1time=="00:01") { $EnergyimportDaily = $EnergyimportDelta; }
+	if ($p1time=="00:01") { $EnergyexportDaily = $EnergyexportDelta; }
 
 		
 // INSERT *** Query
 // ***
+//
 $sql = "INSERT INTO P1device (";
 // ***
 $sql.= "Serial,SW_Version,TimeStamp,TimeStampmysql,Head,Tail,Tariff,Message,Unknown,";
@@ -203,7 +204,7 @@ $sql.= "'$EnergyimportDaily','$EnergyexportDaily'";
 $sql.= ")";
 
 // Execute Query
-
+//
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully\n";
 } else {
@@ -211,6 +212,7 @@ if ($conn->query($sql) === TRUE) {
 };
 
 // Close connection
+//
 $conn->close();
 
 // **********************************************************
@@ -218,6 +220,8 @@ $conn->close();
 // Old post data
 //exec ('curl -s -d "d='.date('Ymd', $p1timestampunix).'" -d "t='.date('H:i', $p1timestampunix).'" -d "v4='.$p1pimport.'" -H "X-Pvoutput-Apikey: '.$pvoapi.'" -H "X-Pvoutput-SystemId: '.$pvosid.'" '.$pvourladd.'');
 
+// 
+//
 exec ('curl -s -d "d='.date('Ymd', $p1timestampunix).'" -d "t='.date('H:i', $p1timestampunix).'" -d "v3='.$EnergyimportDaily.'" -H "X-Pvoutput-Apikey: '.$pvoapi.'" -H "X-Pvoutput-SystemId: '.$pvosid.'" '.$pvourladd.'');
 
 ?>
