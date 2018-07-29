@@ -1,5 +1,16 @@
 # Changelog
 
+## 20180728,
+Recreated from a backup image, data of powerusage is not update.
+Created script to manualy upload data in batch.
+note: powerused data needs to be cumulative for pvoutput.org
+Created p1spot view in mysql database.
+Renamed files
+Created script to manualy update to pvoutput.org
+
+## 20180706,
+Raspberry pi crashed, SD-card and USB data destroyed.
+
 ## 20160909,
 Added: New fields to the database, differences of energy import/export. See below 'schemaupdate 2'
 
