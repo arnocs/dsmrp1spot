@@ -1,14 +1,15 @@
 <?PHP
-
 // Include config file
 // *** P1 path file     * $p1path $p1latestfile
 // *** DATABASE         * $dbserver $dbusername $dbpassword $dbname
 // *** PvOutput.org     * $pvoapi $pvosid
-include '/usr/local/bin/dsmrp1spot/p1spot.conf';
+//
+include '/usr/local/bin/dsmrp1spot/dsmrp1spot.conf';
+//
 $curlapi = "X-Pvoutput-Apikey: ".$pvoapi;
 $curlsid = "X-Pvoutput-SystemId: ".$pvosid;
-
-$updatestart = "1532815249"; $updateend ="1532815249";
+//
+$updatestart = "1532815240"; $updateend ="1532815240";
 
 // #################################################################
 //
@@ -40,6 +41,7 @@ if ($result=mysqli_query($con,$sql))
     $curlv3 = $row[1] ;
     
     echo "curl -s -d d=".$curldate." -d t=".$curltime." -d v3=".$curlv3;
+	//
 	exec ('curl -s -d "d='.$curldate.'" -d "t='.$curltime.'" -d "v3='.$curlv3.'" -H "'.$curlapi.'" -H "'.$curlsid.'" '.$pvourladd.'', $cout, $cret);
     echo " ".$cout[0]." ".$cret."\n";
     }
@@ -48,24 +50,5 @@ if ($result=mysqli_query($con,$sql))
 }
 
 mysqli_close($con);
-
-
-// #################################################################
-// *** Post data directly to PVoutput.org via CURL
-/*
-$curldate = date('Ymd', $p1timestampunix);
-$curltime = date('H:i', $p1timestampunix);
-$curlapi = "X-Pvoutput-Apikey: ".$pvoapi;
-$curlsid = "X-Pvoutput-SystemId: ".$pvosid;
-$curlv3 = $EnergyimportDaily;
-
-echo "|".date('Ymd', $lastp1timestampunix)."|".date('H:i', $p1timestampunix)."|".$pvoapi."|".$pvosid."|".$pvourladd."|";
-echo "\n";
-echo "|".$curldate."|".$curltime."|".$curlv3."|".$curlapi."|".$curlsid."|".$EnergyimportDaily;
-echo "\n";
-//
-exec ('curl -s -d "d='.$curldate.'" -d "t='.$curltime.'" -d "v3='.$curlv3.'" -H "'.$curlapi.'" -H "'.$curlsid.'" '.$pvourladd.'');
-*/
-?> 
-
-
+?>
+ 
