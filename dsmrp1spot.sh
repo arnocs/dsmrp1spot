@@ -37,4 +37,4 @@ fi
 
 ### DEBUG
 # echo $p1latestlen
-cat $p1latestfile
+# cat $p1latestfile
