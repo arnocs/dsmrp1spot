@@ -1,8 +1,9 @@
 # Changelog
 
 ## 202006,
-Modifications, writing to database, added gasm3 to table, 
-Separate database credentials for reading the SBFspot database.
+Modifications, writing to database, added gasm3 to table, Separate database credentials for reading the SBFspot database.
+Moved credentials variables to configuration file.
+Added gasm3 to pvoutput posting via curl. 
 
 
 ## 20180728,
