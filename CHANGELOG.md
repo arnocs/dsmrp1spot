@@ -1,5 +1,10 @@
 # Changelog
 
+## 202006,
+Modifications, writing to database, added gasm3 to table, 
+Separate database credentials for reading the SBFspot database.
+
+
 ## 20180728,
 Recreated from a backup image, data of powerusage is not update.
 Created script to manualy upload data in batch.
